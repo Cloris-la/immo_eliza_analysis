@@ -1,0 +1,24 @@
+
+==============================================================================================
+             CORRELATION  
+==============================================================================================
+
+All plots related to correlation are saved in the folder plots/correlation
+
+Looking at correlation against price, we don't find very strong correlations.
+The highest one being with bedroomCount 0.37.
+
+If we split the data between houses and apartments, we find stronger correlations:
+- For Houses, the correlation with bedroomCount (0.37) is lower than with toiletCount (0.47).
+- For Apartments, the correlation with bedroomCount (0.33) is lower than with bathroomCount (0.50).
+
+Looking at other variables correlation, we still have no strong correlations
+but when we split the data:
+- For Houses, the correlation between bedroomCount and toiletCount is 0.63.
+- For Apartments, the correlation between bedroomCount and bathroomCount is 0.66.
+
+Another interesting aspect is the almost null correlation between price and parking variables (-0.00).
+If we combine indoor and outdoor parking, then the correlation with price increases to 0.01
+Which still is very low.
+
+For our model, we may think about combining bathroom and toilet counts

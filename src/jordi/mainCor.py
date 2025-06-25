@@ -95,37 +95,42 @@ maxCorApt = df_apartment.corr().where(~np.eye(df_apartment.corr().shape[0], dtyp
 df_cleaned['parking'] = df_cleaned.parkingCountIndoor + df_cleaned.parkingCountOutdoor
 parkingCor = df_cleaned.corr()['price']['parking']
 
-print("""
-    ==============================================================================================
-                 CORRELATION  
-    ==============================================================================================
-    
-    All plots related to correlation are saved in the folder plots/correlation
-      """)
 
-print(f"""
-      Looking at correlation against price, we don't find very strong correlations.
-      The highest one being with bedroomCount {maxPriceCor:.2f}.
- 
-      If we split the data between houses and apartments, we find stronger correlations:
-      - For Houses, the correlation with bedroomCount ({PriceCorHouse[1]:.2f}) is lower than with toiletCount ({PriceCorHouse[0]:.2f}).
-      - For Apartments, the correlation with bedroomCount ({PriceCorApt[1]:.2f}) is lower than with bathroomCount ({PriceCorApt[0]:.2f}).
-      """)
+output_path = 'plots/correlation/correlation_summary.txt'
 
+# Write to file
+with open(output_path, 'w', encoding='utf-8') as f:
+    f.write("""
+==============================================================================================
+             CORRELATION  
+==============================================================================================
 
-print(f"""
-      Looking at other variables correlation, we still have no strong correlations 
-      but when we split the data:
-      - For Houses, the correlation between bedroomCount and toiletCount is {maxCorHouse:.2f}.
-      - For Apartments, the correlation between bedroomCount and bathroomCount is {maxCorApt:.2f}.
-      """)
+All plots related to correlation are saved in the folder plots/correlation
+""")
+    f.write(f"""
+Looking at correlation against price, we don't find very strong correlations.
+The highest one being with bedroomCount {maxPriceCor:.2f}.
 
-print(f"""
-      Another insteresting aspect is the almost null correlation between price and parking variables ({minPriceCor:.2f}).
-      If we combine indoor and outdoor parking, then the correlation with price increases to {parkingCor:.2f}
-      Which still is very low.
-      """)
+If we split the data between houses and apartments, we find stronger correlations:
+- For Houses, the correlation with bedroomCount ({PriceCorHouse[1]:.2f}) is lower than with toiletCount ({PriceCorHouse[0]:.2f}).
+- For Apartments, the correlation with bedroomCount ({PriceCorApt[1]:.2f}) is lower than with bathroomCount ({PriceCorApt[0]:.2f}).
+""")
+    f.write(f"""
+Looking at other variables correlation, we still have no strong correlations
+but when we split the data:
+- For Houses, the correlation between bedroomCount and toiletCount is {maxCorHouse:.2f}.
+- For Apartments, the correlation between bedroomCount and bathroomCount is {maxCorApt:.2f}.
+""")
+    f.write(f"""
+Another interesting aspect is the almost null correlation between price and parking variables ({minPriceCor:.2f}).
+If we combine indoor and outdoor parking, then the correlation with price increases to {parkingCor:.2f}
+Which still is very low.
+""")
+    f.write("""
+For our model, we may think about combining bathroom and toilet counts
+""")
 
-print("""
-      For our model, we may think about combining bathroom and toilet counts
-      """)
+# Now read and print the file content
+with open(output_path, 'r', encoding='utf-8') as f:
+    content = f.read()
+    print(content)
