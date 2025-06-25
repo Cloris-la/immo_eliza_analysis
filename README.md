@@ -4,7 +4,7 @@
 
 This project is the continuation of a data scraping mission for the company **ImmoEliza**. The objective here is to perform an **exploratory data analysis (EDA)** on a real estate dataset collected from Belgian listings, in order to extract actionable insights that will later support a machine learning model for price prediction.
 
-The dataset contains over **10,000 properties** and includes key features like price, location, type, surface, and amenities such as gardens, terraces, and pools.
+The dataset contains over **85,000 properties** and includes key features like price, location, type, surface, and amenities such as gardens, terraces, and pools.
 
 ---
 
